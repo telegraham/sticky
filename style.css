@@ -1,0 +1,48 @@
+html, body {
+  height: 100%;
+}
+.strings {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.strings path {
+  stroke: #000;
+  stroke-width: 1;
+}
+.allTheLists {
+  display: flex;
+  align-items: stretch;
+  min-height: 100%;
+}
+.pointList {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.point {
+  border-radius: 10px;
+  padding: 5px 10px;
+  background: #fefefe;
+  box-shadow: 0px 0px 10px 2px #fefefe;
+  transition: background .25s;
+}
+.point:hover {
+  background: #eee;
+  cursor: crosshair;
+}
+.point.down {
+  background: lightblue;
+}
+body.mouseDown {
+  cursor: ew-resize;
+}
