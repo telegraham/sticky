@@ -1,0 +1,95 @@
+Where do you live?
+
+A big city
+A small city
+A suburb
+A small town
+A rural area
+
+
+Where was your shirt made?
+Odds are it wasn't made in the same place you bought it.
+
+North America
+Central America
+South America
+Europe
+Asia
+Africa
+Australia
+Oceania
+Other
+
+
+Which of these have you consumed in the past day?
+In Chicago, these have to be imported.
+
+Chocolate
+Coffee
+Seafood
+Avocados
+Tea
+Rice
+Tobacco
+Orange Juice
+None of the above
+
+
+Where were you born?
+Maybe you've lived in the same place all your life—maybe you've moved.
+
+A big city
+A small city
+A suburb
+A small town
+A rural area
+
+
+With which ethinc backgrounds do you most identify?
+You may not have moved far in your life, but maybe your ancestors did.
+
+African
+Asian
+European
+Indigenous American/Alaskan
+Latino/a or Chicano/a
+Middle Eastern
+Pacific Islander
+Other
+
+
+How many languages do you speak?
+Maybe you learned another language in school, or from your family.
+
+1
+2
+3
+4
+5+
+
+
+In which religion were you raised, if any?
+
+Buddhism
+Christianity
+Hinduism
+Indigenous religion
+Islam
+Judaism
+Pagan/Wiccan
+Sikhism
+Other
+No Religion
+
+What religion do you practice now, if any?
+
+Buddhism
+Christianity
+Hinduism
+Indigenous religion
+Islam
+Judaism
+Pagan/Wiccan
+Sikhism
+Other
+No Religion

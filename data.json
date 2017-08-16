@@ -1,0 +1,382 @@
+{
+  "questions": [
+    {
+      "id": "live",
+      "name": "Where do you live?"
+    },
+    {
+      "id": "shirt",
+      "name": "Where was your shirt made?",
+      "subtitle": "Odds are it wasn't made in the same place you bought it."
+    },
+    {
+      "id": "consumed",
+      "name": "Which of these have you consumed in the past day?",
+      "subtitle": "In Chicago, these have to be imported."
+    },
+    {
+      "id": "born",
+      "name": "Where were you born?",
+      "subtitle": "Maybe you've lived in the same place all your life—maybe you've moved."
+    },
+    {
+      "id": "identify",
+      "name": "With which ethnic backgrounds do you most identify?",
+      "subtitle":, "You may not have moved far in your life, but maybe your ancestors did."
+    },
+    {
+      "id": "speak",
+      "name": "How many languages do you speak?",
+      "subtitle": "Maybe you learned another language in school, or from your family."
+    }
+    {
+      "id": "raised",
+      "name": "In which religion were you raised, if any?"
+    },
+    {
+      "id": "practice",
+      "name": "What religion do you practice now, if any?",
+    }
+  ],
+  "options": [
+    {
+      "id": "liveBigCity",
+      "listId": "live",
+      "name": "A big city"
+    },
+    {
+      "id": "liveSmallCity",
+      "listId": "live",
+      "name": "A small city"
+    },
+    {
+      "id": "liveBurb",
+      "listId": "live",
+      "name": "A suburb"
+    },
+    {
+      "id": "liveTown",
+      "listId": "live",
+      "name": "A small town"
+    },
+    {
+      "id": "liveRural",
+      "listId": "live",
+      "name": "A rural area"
+    },
+    {
+      "id": "shirtNA",
+      "listId": "shirt",
+      "name": "North America"
+    },
+    {
+      "id": "shirtCA",
+      "listId": "shirt",
+      "name": "Central America"
+    },
+    {
+      "id": "shirtSA",
+      "listId": "shirt",
+      "name": "South America"
+    },
+    {
+      "id": "shirtEurope",
+      "listId": "shirt",
+      "name": "Europe"
+    },
+    {
+      "id": "shirtAsia",
+      "listId": "shirt",
+      "name": "Asia"
+    },
+    {
+      "id": "shirtAfrica",
+      "listId": "shirt",
+      "name": "Africa"
+    },
+    {
+      "id": "shirtAustralia",
+      "listId": "shirt",
+      "name": "Australia"
+    },
+    {
+      "id": "shirtOceania",
+      "listId": "shirt",
+      "name": "Oceania"
+    },
+    {
+      "id": "shirtOther",
+      "listId": "shirt",
+      "name": "Other"
+    },
+    {
+      "id": "consumedChocolate",
+      "listId": "consumed",
+      "name": "Chocolate"
+    },
+    {
+      "id": "consumedCoffee",
+      "listId": "consumed",
+      "name": "Coffee"
+    },
+    {
+      "id": "consumedSeafood",
+      "listId": "consumed",
+      "name": "Seafood"
+    },
+    {
+      "id": "consumedAvocados",
+      "listId": "consumed",
+      "name": "Avocados"
+    },
+    {
+      "id": "consumedTea",
+      "listId": "consumed",
+      "name": "Tea"
+    },
+    {
+      "id": "consumedRice",
+      "listId": "consumed",
+      "name": "Rice"
+    },
+    {
+      "id": "consumedTobacco",
+      "listId": "consumed",
+      "name": "Tobacco"
+    },
+    {
+      "id": "consumedOJ",
+      "listId": "consumed",
+      "name": "Orange Juice"
+    },
+    {
+      "id": "consumedNone",
+      "listId": "consumed",
+      "name": "None of the above"
+    },
+    {
+      "id": "bornBigCity",
+      "listId": "born",
+      "name": "A big city"
+    },
+    {
+      "id": "bornSmallCity",
+      "listId": "born",
+      "name": "A small city"
+    },
+    {
+      "id": "bornBurb",
+      "listId": "born",
+      "name": "A suburb"
+    },
+    {
+      "id": "bornTown",
+      "listId": "born",
+      "name": "A small town"
+    },
+    {
+      "id": "bornRural",
+      "listId": "born",
+      "name": "A rural area"
+    },
+    {
+      "id": "identifyAfrican",
+      "listId": "identify",
+      "name": "African"
+    },
+    {
+      "id": "identifyAsian",
+      "listId": "identify",
+      "name": "Asian"
+    },
+    {
+      "id": "identifyEuropean",
+      "listId": "identify",
+      "name": "European"
+    },
+    {
+      "id": "identifyIndigenous",
+      "listId": "identify",
+      "name": "Indigenous American/Alaskan"
+    },
+    {
+      "id": "identifyLatino",
+      "listId": "identify",
+      "name": "Latino/a or Chicano/a"
+    },
+    {
+      "id": "identifyMiddleEastern",
+      "listId": "identify",
+      "name": "Middle Eastern"
+    },
+    {
+      "id": "identifyPacificIslander",
+      "listId": "identify",
+      "name": "Pacific Islander"
+    },
+    {
+      "id": "identifyOther",
+      "listId": "identify",
+      "name": "Other"
+    },
+    {
+      "id": "speak1",
+      "listId": "speak",
+      "name": "1"
+    },
+    {
+      "id": "speak2",
+      "listId": "speak",
+      "name": "2"
+    },
+    {
+      "id": "speak3",
+      "listId": "speak",
+      "name": "3"
+    },
+    {
+      "id": "speak4",
+      "listId": "speak",
+      "name": "4"
+    },
+    {
+      "id": "speak5",
+      "listId": "speak",
+      "name": "5+"
+    },
+    {
+      "id": "raisedBuddhism",
+      "listId": "raised",
+      "name": "Buddhism"
+    },
+    {
+      "id": "raisedChristianity",
+      "listId": "raised",
+      "name": "Christianity"
+    },
+    {
+      "id": "raisedHinduism",
+      "listId": "raised",
+      "name": "Hinduism"
+    },
+    {
+      "id": "raisedIndigenousReligion",
+      "listId": "raised",
+      "name": "Indigenous Religion"
+    },
+    {
+      "id": "raisedIslam",
+      "listId": "raised",
+      "name": "Islam"
+    },
+    {
+      "id": "raisedJudaism",
+      "listId": "raised",
+      "name": "Judaism"
+    },
+    {
+      "id": "raisedPaganWiccan",
+      "listId": "raised",
+      "name": "Pagan/Wiccan"
+    },
+    {
+      "id": "raisedSikhism",
+      "listId": "raised",
+      "name": "Sikhism"
+    },
+    {
+      "id": "raisedOther",
+      "listId": "raised",
+      "name": "Other"
+    },
+    {
+      "id": "raisedNoReligion",
+      "listId": "raised",
+      "name": "No Religion"
+    },
+    {
+      "id": "practiceBuddhism",
+      "listId": "practice",
+      "name": "Buddhism"
+    },
+    {
+      "id": "practiceChristianity",
+      "listId": "practice",
+      "name": "Christianity"
+    },
+    {
+      "id": "practiceHinduism",
+      "listId": "practice",
+      "name": "Hinduism"
+    },
+    {
+      "id": "practiceIndigenousReligion",
+      "listId": "practice",
+      "name": "Indigenous Religion"
+    },
+    {
+      "id": "practiceIslam",
+      "listId": "practice",
+      "name": "Islam"
+    },
+    {
+      "id": "practiceJudaism",
+      "listId": "practice",
+      "name": "Judaism"
+    },
+    {
+      "id": "practicePaganWiccan",
+      "listId": "practice",
+      "name": "Pagan/Wiccan"
+    },
+    {
+      "id": "practiceSikhism",
+      "listId": "practice",
+      "name": "Sikhism"
+    },
+    {
+      "id": "practiceOther",
+      "listId": "practice",
+      "name": "Other"
+    },
+    {
+      "id": "practiceNoReligion",
+      "listId": "practice",
+      "name": "No Religion"
+    },
+  ],
+  "responses": [
+    {
+      "userId": 1,
+      "optionId": "liveBigCity"
+    },
+    {
+      "userId": 1,
+      "optionId": "shirtAsia"
+    },
+    {
+      "userId": 1,
+      "optionId": "consumedCoffee"
+    },
+    {
+      "userId": 1,
+      "optionId": "bornBurb"
+    },
+    {
+      "userId": 1,
+      "optionId": "identifyEuropean"
+    },
+    {
+      "userId": 1,
+      "optionId": "speak2"
+    },
+    {
+      "userId": 1,
+      "optionId": "raisedChristianity"
+    },
+    {
+      "userId": 1,
+      "optionId": "practiceBuddhism"
+    },
+  ]
+}
