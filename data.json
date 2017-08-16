@@ -22,20 +22,20 @@
     {
       "id": "identify",
       "name": "With which ethnic backgrounds do you most identify?",
-      "subtitle":, "You may not have moved far in your life, but maybe your ancestors did."
+      "subtitle": "You may not have moved far in your life, but maybe your ancestors did."
     },
     {
       "id": "speak",
       "name": "How many languages do you speak?",
       "subtitle": "Maybe you learned another language in school, or from your family."
-    }
+    },
     {
       "id": "raised",
       "name": "In which religion were you raised, if any?"
     },
     {
       "id": "practice",
-      "name": "What religion do you practice now, if any?",
+      "name": "What religion do you practice now, if any?"
     }
   ],
   "options": [
@@ -343,7 +343,7 @@
       "id": "practiceNoReligion",
       "listId": "practice",
       "name": "No Religion"
-    },
+    }
   ],
   "responses": [
     {
@@ -377,6 +377,6 @@
     {
       "userId": 1,
       "optionId": "practiceBuddhism"
-    },
+    }
   ]
 }
