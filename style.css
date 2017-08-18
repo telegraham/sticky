@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
 }
-.strings {
+#svgWrapper {
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -10,10 +10,6 @@ html, body {
   width: 100%;
   height: 100%;
   z-index: -1;
-}
-.strings path {
-  stroke: #000;
-  stroke-width: 1;
 }
 .allTheLists {
   display: flex;
@@ -26,7 +22,7 @@ html, body {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: flex-start;
 }
 .node {
