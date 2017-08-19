@@ -3,6 +3,8 @@ function View(graph){
 }
 View.prototype.firstRender = function(){
 
+  var _this = this;
+
   //do list html
   var $allLists = $(".allTheLists")
   this.graph.eachList(function(list){
@@ -12,6 +14,7 @@ View.prototype.firstRender = function(){
   //set node elements
   this.graph.eachNode(function(node){
     node.$element = $("#" + node.id)
+    node.$element.mousedown(_this.nodeDown.bind(_this, node));
   })
 
   this.paper = Raphael("svgWrapper", "100%", "100%");
@@ -21,12 +24,50 @@ View.prototype.firstRender = function(){
   $(window).resize(function(){
     _this.resetNodePositions();
     _this.drawEdges();
+  });
+
+  this.$document = $(document);
+  this.$body = $("body");
+
+  //prevent default select text
+  this.$body.on("mousedown", function(){
+    return false;
   })
+
+}
+View.prototype.nodeDown = function(node){
+  var _this = this;
+
+  var $document = $(document);
+  var $body = $("body");
+
+  node.$element.addClass("down")
+  $body.addClass("mouseDown");
+
+  $document.on("mousemove.pointdrag", function(mouseMoveEvent){
+    var nextList = _this.graph.listAfter(node.list);
+    var closestNode
+      = nextList.closestNode(mouseMoveEvent.clientX, mouseMoveEvent.clientY);
+    var $closest = $(".closest")
+    if (closestNode && (!$closest.length
+        || $closest[0] !== closestNode.$element[0])){
+      console.log("diff", $closest, closestNode.$element)
+      $closest.removeClass("closest")
+      closestNode.$element.addClass("closest");
+    }
+  });
+  $document.one("mouseup", function(){
+    $document.off(".pointdrag");
+
+    node.$element.removeClass("down")
+    $body.removeClass("mouseDown");
+  });
+  return false;
 }
 View.prototype.resetNodePositions = function(){
-  for (var nodeId in this.nodes) {
-    this.graph.nodes[nodeId].notifyPositionChanged();
-  }
+  this.graph.eachNode(function(node) {
+    node.notifyPositionChanged();
+  })
 }
 View.prototype.drawEdges = function(){
   var _this = this;

@@ -17,3 +17,11 @@ Graph.prototype.eachNode = function(callback){
     callback(this.nodes[nodeId]);
   }
 }
+Graph.prototype.listAfter = function(list){
+  var lastList = null
+  for (var listId in this.lists) {
+    var thisList = this.lists[listId];
+    if (lastList === list) return thisList;
+    lastList = thisList;
+  }
+}
