@@ -1,5 +1,7 @@
+//= require edge
+
 function EdgeFactory(responses){
-  this.responses = this.chunkResponsesByUserId(responses);
+  this.userResponses = this.chunkResponsesByUserId(responses);
 }
 EdgeFactory.prototype.chunkResponsesByUserId = function(responses){
   var chunked = {}
@@ -11,34 +13,61 @@ EdgeFactory.prototype.chunkResponsesByUserId = function(responses){
   })
   return chunked;
 }
-
+EdgeFactory.prototype.eachUserResponses = function(callback){
+  for (var userId in this.userResponses) {
+    callback(this.userResponses[userId]);
+  }
+}
 EdgeFactory.filterResponsesByList = function(responses, list){
   return responses.filter(function(response){
     return list.nodeIds().includes(response.optionId);
   })
 }
-EdgeFactory.prototype.create = function(lists, nodes){
-  var edges = [];
-  for (var userId in this.responses) {
-    var responsesFromUser = this.responses[userId];
-    var lastList;
-    for (var listId in lists) {
-      var list = lists[listId];
-      if (lastList) {
-        var userResponsesInLastList = EdgeFactory.filterResponsesByList(responsesFromUser, lastList);
-        var userResponsesInThisList = EdgeFactory.filterResponsesByList(responsesFromUser, list);
-        //draw all the lines between all the points
-        userResponsesInLastList.forEach(function(responseInLastList){
-          userResponsesInThisList.forEach(function(responseInThisList){
-            var edge = new Edge();
-            edge.addNode(nodes[responseInLastList.optionId]);
-            edge.addNode(nodes[responseInThisList.optionId]);
-            edges.push(edge);
-          });
-        });
-      }
-      lastList = list;
+EdgeFactory.chunkListCouplets = function(lists){
+  var listCouplets = [];
+  var lastList = null;
+  for (var listId in lists) {
+    var list = lists[listId];
+    if (lastList) {
+      listCouplets.push([lastList, list])
     }
+    lastList = list;
   }
+  return listCouplets;
+}
+
+EdgeFactory.prototype.create = function(lists, nodes){
+  var listCouplets = EdgeFactory.chunkListCouplets(lists);
+
+  var edges = [];
+  this.eachUserResponses(function(userResponses){
+    listCouplets.forEach(function(listCouplet){
+       edges = edges.concat(EdgeFactory.userEdgesForListCouplet(userResponses, listCouplet, nodes))
+    });
+  });
   return edges;
+}
+
+EdgeFactory.userEdgesForListCouplet = function(userResponses, listCouplet, nodes){
+  var edges = [];
+  var lastListResponses
+    = EdgeFactory.filterResponsesByList(userResponses, listCouplet[0]);
+  var thisListResponses
+    = EdgeFactory.filterResponsesByList(userResponses, listCouplet[1]);
+
+  //draw all the lines between all the points
+  lastListResponses.forEach(function(lastListResponse){
+    thisListResponses.forEach(function(thisListResponse){
+      var edge = EdgeFactory.createEdge(lastListResponse, thisListResponse, nodes);
+      edges.push(edge)
+    });
+  });
+
+  return edges;
+}
+EdgeFactory.createEdge = function(response1, response2, nodes) {
+  var edge = new Edge();
+  edge.addNode(nodes[response1.optionId]);
+  edge.addNode(nodes[response2.optionId]);
+  return edge;
 }
