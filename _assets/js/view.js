@@ -15,6 +15,9 @@ View.prototype.firstRender = function(){
   this.graph.eachNode(function(node){
     node.$element = $("#" + node.id)
     node.$element.mousedown(_this.nodeDown.bind(_this, node));
+    node.$element.mouseup(_this.nodeUp.bind(_this, node));
+    node.$element.mouseover(_this.nodeOver.bind(_this, node));
+    node.$element.mouseout(_this.nodeOut.bind(_this, node));
   })
 
   this.paper = Raphael("svgWrapper", "100%", "100%");
@@ -35,8 +38,26 @@ View.prototype.firstRender = function(){
   })
 
 }
+View.prototype.nodeOver = function(node){
+  if (this.dragging) {
+    node.$element.addClass("over")
+  }
+}
+View.prototype.nodeOut = function(node){
+  if (this.dragging) {
+    node.$element.removeClass("over")
+  }
+}
+View.prototype.nodeUp = function(node){
+  if (this.dragging) {
+    console.log(this.draggingFrom, node);
+  }
+}
 View.prototype.nodeDown = function(node){
   var _this = this;
+
+  this.dragging = true;
+  this.draggingFrom = node;
 
   var $document = $(document);
   var $body = $("body");
@@ -51,7 +72,6 @@ View.prototype.nodeDown = function(node){
     var $closest = $(".closest")
     if (closestNode && (!$closest.length
         || $closest[0] !== closestNode.$element[0])){
-      console.log("diff", $closest, closestNode.$element)
       $closest.removeClass("closest")
       closestNode.$element.addClass("closest");
     }
@@ -59,6 +79,8 @@ View.prototype.nodeDown = function(node){
   $document.one("mouseup", function(){
     $document.off(".pointdrag");
 
+    $(".closest").removeClass("closest")
+    $(".over").removeClass("over")
     node.$element.removeClass("down")
     $body.removeClass("mouseDown");
   });
