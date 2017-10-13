@@ -1,7 +1,7 @@
 //= require pythagorean-helper
 function NodeList(attrs){
   this.id = attrs.id
-
+  this.name = attrs.name
   this.nodes = [];
 }
 NodeList.prototype.addNode = function(node){
@@ -16,9 +16,9 @@ NodeList.prototype.closestNode = function(x, y){
   return this.nodes[0];
 }
 NodeList.prototype.toHtml = function(){
-  return "<ul class='nodeList'>" + this.nodes.map(function(node){
+  return "<li><h2>" + this.name  + "</h2><ol class='nodeList'>" + this.nodes.map(function(node){
     return node.toHtml();
-  }).join("\r\n") + "</ul>"
+  }).join("\r\n") + "</ol></li>"
 }
 NodeList.prototype.nodeIds = function(){
   if (!this.cachedNodeIds) {

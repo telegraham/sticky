@@ -18,10 +18,17 @@ Graph.prototype.eachNode = function(callback){
   }
 }
 Graph.prototype.listAfter = function(list){
-  var lastList = null
+  var lastList = null;
   for (var listId in this.lists) {
     var thisList = this.lists[listId];
     if (lastList === list) return thisList;
     lastList = thisList;
   }
+}
+Graph.prototype.addEdge = function(edge){
+  this.edges.push(edge)
+}
+
+Graph.prototype.listsAreAdjacent = function(firstList, secondList){
+  return secondList === this.listAfter(firstList);
 }

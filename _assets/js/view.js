@@ -50,7 +50,16 @@ View.prototype.nodeOut = function(node){
 }
 View.prototype.nodeUp = function(node){
   if (this.dragging) {
-    console.log(this.draggingFrom, node);
+    //console.log(this.draggingFrom, node);
+    if (this.graph.listsAreAdjacent(this.draggingFrom.list, node.list)
+      && this.graph.edgeExistsForUser(this.draggingFrom.list, node.list)) {
+      console.log("ajax")
+      var edge = new Edge();
+      edge.addNode(this.draggingFrom)
+      edge.addNode(node)
+      this.graph.addEdge(edge);
+      this.drawEdge(edge);
+    }
   }
 }
 View.prototype.nodeDown = function(node){
@@ -62,27 +71,27 @@ View.prototype.nodeDown = function(node){
   var $document = $(document);
   var $body = $("body");
 
-  node.$element.addClass("down")
-  $body.addClass("mouseDown");
+  // node.$element.addClass("down")
+  // $body.addClass("mouseDown");
 
   $document.on("mousemove.pointdrag", function(mouseMoveEvent){
-    var nextList = _this.graph.listAfter(node.list);
-    var closestNode
-      = nextList.closestNode(mouseMoveEvent.clientX, mouseMoveEvent.clientY);
-    var $closest = $(".closest")
-    if (closestNode && (!$closest.length
-        || $closest[0] !== closestNode.$element[0])){
-      $closest.removeClass("closest")
-      closestNode.$element.addClass("closest");
-    }
+    // var nextList = _this.graph.listAfter(node.list);
+    // var closestNode
+    //   = nextList.closestNode(mouseMoveEvent.clientX, mouseMoveEvent.clientY);
+    // var $closest = $(".closest")
+    // if (closestNode && (!$closest.length
+    //     || $closest[0] !== closestNode.$element[0])){
+    //   $closest.removeClass("closest")
+    //   closestNode.$element.addClass("closest");
+    // }
   });
   $document.one("mouseup", function(){
-    $document.off(".pointdrag");
+    // $document.off(".pointdrag");
 
-    $(".closest").removeClass("closest")
-    $(".over").removeClass("over")
-    node.$element.removeClass("down")
-    $body.removeClass("mouseDown");
+    // $(".closest").removeClass("closest")
+    // $(".over").removeClass("over")
+    // node.$element.removeClass("down")
+    // $body.removeClass("mouseDown");
   });
   return false;
 }
@@ -92,12 +101,12 @@ View.prototype.resetNodePositions = function(){
   })
 }
 View.prototype.drawEdges = function(){
-  var _this = this;
-  this.graph.edges.forEach(function(edge){
-    if (edge.path)
-      edge.path.attr("path", edge.pathCoords());
-    else
-      edge.path = _this.paper.path(edge.pathCoords());
-      edge.path.attr("stroke", "#056597");
-  });
+  this.graph.edges.forEach(this.drawEdge.bind(this));
+}
+View.prototype.drawEdge = function(edge){
+  if (edge.path)
+    edge.path.attr("path", edge.pathCoords());
+  else
+    edge.path = this.paper.path(edge.pathCoords());
+    edge.path.attr("stroke", "#056597");
 }
