@@ -2,6 +2,7 @@
 function NodeList(attrs){
   this.id = attrs.id
   this.name = attrs.name
+  this.subtitle = attrs.subtitle
   this.nodes = [];
 }
 NodeList.prototype.addNode = function(node){
@@ -16,7 +17,9 @@ NodeList.prototype.closestNode = function(x, y){
   return this.nodes[0];
 }
 NodeList.prototype.toHtml = function(){
-  return "<li><h2>" + this.name  + "</h2><ol class='nodeList'>" + this.nodes.map(function(node){
+  return "<li class='nodes'><header class='nodes__header'><h2>" + this.name  + "</h2>" + 
+  (this.subtitle ? ("<p class='subtitle'>" + this.subtitle + "</p>") : "") + 
+  "</header><ol class='nodes__list'>" + this.nodes.map(function(node){
     return node.toHtml();
   }).join("\r\n") + "</ol></li>"
 }

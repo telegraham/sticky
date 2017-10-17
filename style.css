@@ -1,5 +1,7 @@
 html, body {
   height: 100%;
+  font-size: 15px;
+  line-height: 1.25em;
 }
 #svgWrapper {
   position: absolute;
@@ -15,17 +17,37 @@ html, body {
   display: flex;
   align-items: stretch;
   min-height: 100%;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
 }
-.nodeList {
-  padding: 0 10px;
+.nodes {
+  min-width: 145px;
+  flex-basis: 12.5%;
+  display: flex;
+  flex-direction: column;
+}
+.nodes__header {
+  height: 135px;
+  padding: 10px;
+}
+.nodes__header h2 {
+  margin-bottom: 10px;
+  min-height: 3.75em;
+}
+.nodes__header p {
+  font-style: italic;
+}
+.nodes__list {
   margin: 0;
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
-  flex-basis: 0;
-  flex-grow: 1
+  flex-grow: 1;
+  padding: 20px 0;
+  min-height: 420px;
 }
 .node {
   border-radius: 10px;
@@ -33,6 +55,8 @@ html, body {
   background: rgba(250, 250, 250, 0.9);
   box-shadow: 0px 0px 10px 2px rgba(250, 250, 250, 0.9);
   transition: background .25s;
+  font-family: sans-serif;
+  font-weight: 100;
 }
 .node:hover {
   background: rgb(250, 250, 250);
