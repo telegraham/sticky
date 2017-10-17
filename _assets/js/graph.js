@@ -28,7 +28,6 @@ Graph.prototype.listAfter = function(list){
 Graph.prototype.addEdge = function(edge){
   this.edges.push(edge)
 }
-
 Graph.prototype.listsAreAdjacent = function(firstList, secondList){
-  return secondList === this.listAfter(firstList);
+  return secondList === this.listAfter(firstList) || firstList === this.listAfter(secondList);
 }

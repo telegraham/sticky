@@ -50,10 +50,8 @@ View.prototype.nodeOut = function(node){
 }
 View.prototype.nodeUp = function(node){
   if (this.dragging) {
-    //console.log(this.draggingFrom, node);
-    if (this.graph.listsAreAdjacent(this.draggingFrom.list, node.list)
-      && this.graph.edgeExistsForUser(this.draggingFrom.list, node.list)) {
-      console.log("ajax")
+    if (this.draggingFrom === node //same node (click)
+          || this.graph.listsAreAdjacent(this.draggingFrom.list, node.list)) {
       var edge = new Edge();
       edge.addNode(this.draggingFrom)
       edge.addNode(node)

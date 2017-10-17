@@ -36,14 +36,12 @@ GraphFactory.prototype.linkNodesAndLists = function(nodes, lists){
 GraphFactory.prototype.create = function(){
 
   var lists = this.createLists(this.questions)
-
   var nodes = this.createNodes(this.options)
 
   this.linkNodesAndLists(nodes, lists)
 
   var ef = new EdgeFactory(this.responses);
   var edges = ef.create(lists, nodes)
-
   var graph = new Graph(lists, nodes, edges);
 
   return new Graph(lists, nodes, edges);

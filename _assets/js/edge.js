@@ -1,6 +1,4 @@
 function Edge(){
- /* this.sourceNode = sourceNode; //left
-  this.destinationNode = destinationNode; //right*/
   this.nodes = [];
 }
 Edge.prototype.addNode = function(node){

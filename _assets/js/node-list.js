@@ -24,10 +24,8 @@ NodeList.prototype.toHtml = function(){
   }).join("\r\n") + "</ol></li>"
 }
 NodeList.prototype.nodeIds = function(){
-  if (!this.cachedNodeIds) {
-    this.cachedNodeIds = this.nodes.map(function(node){
-      return node.id;
-    });
-  }
+  this.cachedNodeIds = this.cachedNodeIds || this.nodes.map(function(node){
+    return node.id;
+  });
   return this.cachedNodeIds;
 }
