@@ -1,6 +1,10 @@
-# get "/graph.json" do
-
-# end
+get "/data.json" do
+  return {
+    questions: Question.all.map(&:json_hash),
+    options: Option.all.map(&:json_hash),
+    responses: Response.all.map(&:json_hash)
+  }.to_json
+end
 
 # # get "/questions.json" do
 

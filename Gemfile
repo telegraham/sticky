@@ -12,6 +12,11 @@ gem 'activerecord', '~>5.1.0'
 
 gem 'rake'
 
+gem 'sprockets'
+gem 'uglifier'
+gem 'sass'
+gem 'coffee-script'
+
 gem 'shotgun', '~>0.9.1'
 
 group :test do

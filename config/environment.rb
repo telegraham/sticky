@@ -20,6 +20,9 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
+require 'sprockets'
+
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -35,6 +38,9 @@ configure do
 
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  set :sprockets_environment, Sprockets::Environment.new
+
 end
 
 # Set up the controllers and helpers
@@ -47,3 +53,7 @@ require APP_ROOT.join('app', 'models', 'application_record').to_s
 
 # Set up the database
 require APP_ROOT.join('config', 'database')
+
+# Set up sprockets
+require APP_ROOT.join('config', 'sprockets')
+
