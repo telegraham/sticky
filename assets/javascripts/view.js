@@ -1,3 +1,4 @@
+
 function View(graph){
   this.graph = graph;
 }
@@ -5,15 +6,9 @@ View.prototype.firstRender = function(){
 
   var _this = this;
 
-  //do list html
-  var $allLists = $(".allTheLists")
-  this.graph.eachList(function(list){
-    $allLists.append(list.toHtml());
-  })
-
   //set node elements
   this.graph.eachNode(function(node){
-    node.$element = $("#" + node.id)
+    node.$element = $("#" + node.stub)
     node.$element.mousedown(_this.nodeDown.bind(_this, node));
     node.$element.mouseup(_this.nodeUp.bind(_this, node));
     node.$element.mouseover(_this.nodeOver.bind(_this, node));
@@ -40,19 +35,34 @@ View.prototype.firstRender = function(){
 }
 View.prototype.nodeOver = function(node){
   if (this.dragging) {
-    node.$element.addClass("over")
+    //node.$element.addClass("over")
   }
 }
 View.prototype.nodeOut = function(node){
   if (this.dragging) {
-    node.$element.removeClass("over")
+    //node.$element.removeClass("over")
   }
 }
 View.prototype.nodeUp = function(node){
   if (this.dragging) {
     if (this.draggingFrom === node //same node (click)
           || this.graph.listsAreAdjacent(this.draggingFrom.list, node.list)) {
-      var edge = new Edge();
+
+
+      var reportBack = [{ optionStub: node.stub }]
+
+      if (this.draggingFrom !== node) {
+        reportBack.push({ optionStub: this.draggingFrom.stub });
+      }
+      //todo move this
+      $.ajax({
+        url: "/responses.json",
+        method: "post",
+        data: JSON.stringify(reportBack),
+        contentType: "application/json",
+      });
+
+      var edge = new Edge({});
       edge.addNode(this.draggingFrom)
       edge.addNode(node)
       this.graph.addEdge(edge);
@@ -102,9 +112,20 @@ View.prototype.drawEdges = function(){
   this.graph.edges.forEach(this.drawEdge.bind(this));
 }
 View.prototype.drawEdge = function(edge){
-  if (edge.path)
+  if (edge.path){
     edge.path.attr("path", edge.pathCoords());
-  else
+  }
+  else {
     edge.path = this.paper.path(edge.pathCoords());
-    edge.path.attr("stroke", "#056597");
+    edge.path.attr({
+      stroke: this.edgeColor(edge),
+      "stroke-width": (edge.user ? 1 : 5)
+    });
+  }
+}
+View.prototype.edgeColor = function(edge) {
+  if (!edge || !edge.user || !edge.user.hash){
+    return "#056597";
+  }
+  return Raphael.hsl((255 - edge.user.hash) / 255, .7, .5);
 }

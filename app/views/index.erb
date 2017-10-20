@@ -12,6 +12,21 @@
     <div id="svgWrapper">
     </div>
     <ol class="allTheLists">
+      <% @questions.each do |question| %>
+      <li class="nodes" id="<%= question.stub %>">
+        <header class="nodes__header">
+          <h2><%= question.name %></h2>
+          <% if question.subtitle %>
+          <p class="subtitle"><%= question.subtitle %></p>
+          <% end %>
+        </header>
+        <ol class="nodes__list">
+          <% question.options.each do |option| %>
+          <li id="<%= option.stub %>" class="node"><%= option.name %></li>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
     </ol>
   </body>
 </html>

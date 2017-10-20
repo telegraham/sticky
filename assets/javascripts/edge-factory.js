@@ -1,4 +1,5 @@
 //= require edge
+//= require user
 
 function EdgeFactory(responses){
   this.userResponses = this.chunkResponsesByUserId(responses);
@@ -15,7 +16,7 @@ EdgeFactory.prototype.chunkResponsesByUserId = function(responses){
 }
 EdgeFactory.prototype.eachUserResponses = function(callback){
   for (var userId in this.userResponses) {
-    callback(this.userResponses[userId]);
+    callback(this.userResponses[userId], userId);
   }
 }
 EdgeFactory.filterResponsesByList = function(responses, list){
@@ -37,18 +38,20 @@ EdgeFactory.chunkListCouplets = function(lists){
 }
 
 EdgeFactory.prototype.create = function(lists, nodes){
+
   var listCouplets = EdgeFactory.chunkListCouplets(lists);
 
   var edges = [];
-  this.eachUserResponses(function(userResponses){
+  this.eachUserResponses(function(userResponses, userId){
+    var user = new User({id: userId});
     listCouplets.forEach(function(listCouplet){
-       edges = edges.concat(EdgeFactory.userEdgesForListCouplet(userResponses, listCouplet, nodes))
+       edges = edges.concat(EdgeFactory.userEdgesForListCouplet(userResponses, listCouplet, nodes, user))
     });
   });
   return edges;
 }
 
-EdgeFactory.userEdgesForListCouplet = function(userResponses, listCouplet, nodes){
+EdgeFactory.userEdgesForListCouplet = function(userResponses, listCouplet, nodes, user){
   var edges = [];
   var lastListResponses
     = EdgeFactory.filterResponsesByList(userResponses, listCouplet[0]);
@@ -58,15 +61,15 @@ EdgeFactory.userEdgesForListCouplet = function(userResponses, listCouplet, nodes
   //draw all the lines between all the points
   lastListResponses.forEach(function(lastListResponse){
     thisListResponses.forEach(function(thisListResponse){
-      var edge = EdgeFactory.createEdge(lastListResponse, thisListResponse, nodes);
+      var edge = EdgeFactory.createEdge(lastListResponse, thisListResponse, nodes, user);
       edges.push(edge)
     });
   });
 
   return edges;
 }
-EdgeFactory.createEdge = function(response1, response2, nodes) {
-  var edge = new Edge();
+EdgeFactory.createEdge = function(response1, response2, nodes, user) {
+  var edge = new Edge({user: user});
   edge.addNode(nodes[response1.optionId]);
   edge.addNode(nodes[response2.optionId]);
   return edge;

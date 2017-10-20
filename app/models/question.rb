@@ -3,9 +3,7 @@ class Question < ApplicationRecord
 
   def json_hash
     {
-      id: self.id,
-      name: self.name,
-      subtitle: self.subtitle
+      id: self.id.hash,
     }
   end
 end

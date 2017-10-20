@@ -4,8 +4,8 @@ class Response < ApplicationRecord
 
   def json_hash
     {
-      userId: user_id,
-      optionId: option_id
+      userId: (user_id.hash.abs / 10000000000000).floor,
+      optionId: option_id.hash
     }
   end
 end
