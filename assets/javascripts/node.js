@@ -2,7 +2,7 @@
 function Node(attrs) {
   this.id = attrs.id
   this.listId = attrs.listId
-  this.name = attrs.name;
+  this.stub = attrs.stub;
   this.notifyPositionChanged();
 }
 Node.prototype.position = function(){
@@ -10,6 +10,7 @@ Node.prototype.position = function(){
     var pos = this.$element.position();
     var height = this.$element.outerHeight();
     var width = this.$element.outerWidth();
+
     this.cachedPosition = {
       x: pos.left + width / 2,
       y: pos.top + height / 2
@@ -26,9 +27,6 @@ Node.prototype.distanceFrom = function(x, y) {
     this.cachedDistances[x][y]
       = PythagoreanHelper.distance(position.x, position.y, x, y)
   return this.cachedDistances[x][y];
-}
-Node.prototype.toHtml = function(){
-  return "<li id='" + this.id + "' class='node'>" + this.name + "</li>"
 }
 Node.prototype.notifyPositionChanged = function(){
   this.cachedPosition = null;

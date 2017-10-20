@@ -1,5 +1,6 @@
-function Edge(){
+function Edge(attrs){
   this.nodes = [];
+  this.user = attrs.user;
 }
 Edge.prototype.addNode = function(node){
   this.nodes.push(node)

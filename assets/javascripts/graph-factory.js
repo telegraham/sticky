@@ -39,7 +39,7 @@ GraphFactory.prototype.create = function(){
   var nodes = this.createNodes(this.options)
 
   this.linkNodesAndLists(nodes, lists)
-
+  
   var ef = new EdgeFactory(this.responses);
   var edges = ef.create(lists, nodes)
   var graph = new Graph(lists, nodes, edges);
